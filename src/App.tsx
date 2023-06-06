@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Router } from './navigation';
+
 
 function App() {
-  return <Router />;
+  return <div>coucou</div>;
 }
 
 export default App;

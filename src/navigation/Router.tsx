@@ -1,15 +1,28 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { createBrowserRouter, useLoaderData } from 'react-router-dom';
 
+import { RootErrorBoundary } from './ErrorBoundary';
 import { Home, Sessions, User } from '../container';
 
-const Router = () => {
-  return (
-    <Routes>
-      <Route path='/' Component={Home} />
-      <Route path='/sessions' Component={Sessions} />
-      <Route path='/user' Component={User} />
-    </Routes>
-  );
-};
-export default Router;
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />,
+    loader: () => ({ message: 'Hello Data Router!' }),
+    Component() {
+      const data = useLoaderData() as { message: string };
+      return <h1>{data.message}</h1>;
+    },
+    errorElement: <RootErrorBoundary />,
+  },
+  {
+    path: 'sessions',
+    element: <Sessions />,
+  },
+  {
+    path: 'user',
+    element: <User />,
+  },
+]);
+
+export default router;
