@@ -24,4 +24,3 @@ it('changes the class when hovered', () => {
   tree = component.toJSON() as ReactTestRendererJSON;
   expect(tree).toMatchSnapshot();
 });
-
